@@ -23,6 +23,18 @@ EventoHistorico::EventoHistorico(const EventoHistorico& ev1, const EventoHistori
     for(auto i = ev1.inicio(); i != ev1.final(); i++)
         insertarEvento(*i);
 
-    for(auto i = ev1.inicio(); i != ev1.final(); i++)
+    for(auto i = ev2.inicio(); i != ev2.final(); i++)
         insertarEvento(*i);
+}
+
+std::ostream& operator<<(std::ostream& os, const EventoHistorico& ev)
+{
+  os << ev.evento.first << ':' << std::endl;
+
+  for(auto &i : ev.evento.second)
+    {
+      os << "    - " << i << std::endl;
+    }
+  
+  return os;
 }

@@ -17,6 +17,8 @@ class Cronologia
     Cronologia() = default;
   Cronologia(const Cronologia& c1, const Cronologia& c2);
 
+  void agregarEvento(const EventoHistorico& e) { eventos.insert(std::pair<int,EventoHistorico>(e.obtenerFecha(), e)); }
+
     // --- Métodos que devuelven iteradores.
     Iterador inicio() { return eventos.begin(); }
     Iterador final() { return eventos.end(); }

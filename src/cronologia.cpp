@@ -29,7 +29,7 @@ Cronologia::Cronologia(const Cronologia& c1, const Cronologia& c2)
 
         if(it1->first == it2->first)
         {
-            eventos.insert(EventoHistorico(*it1, *it2));
+	  eventos.insert(std::make_pair(it1->first, EventoHistorico(it1->second, it2->second)));
             it1++;
             it2++;
         }
@@ -38,13 +38,28 @@ Cronologia::Cronologia(const Cronologia& c1, const Cronologia& c2)
             if(it1->first < it2->first)
             {
                 eventos.insert(*it1);
-                eventos.insert(*it2);
+                //eventos.insert(*it2);
+		it1++;
             }
             else
             {
-                eventos.insert(*it1);
                 eventos.insert(*it2);
+                //eventos.insert(*it1);
+		it2++;
             }
         }
     }
+}
+
+std::istream& operator>>(std::istream& is, Cronologia& c)
+{
+  std::string line;
+
+    while(std::getline(is, line))
+    {
+        c.agregarEvento(EventoHistorico(line));
+    }
+
+  
+  return is;
 }

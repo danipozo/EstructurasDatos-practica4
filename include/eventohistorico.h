@@ -81,6 +81,15 @@ class EventoHistorico
      * @return Iterador al final del conjunto de eventos asociado.
      */
     Iterador final() { return evento.second.end(); }
+    /**
+     * Operador de salida mediante flujo.
+     *
+     * @param os
+     * @param ev
+     *
+     * @return os
+     */
+    friend std::ostream& operator<<(std::ostream& os, const EventoHistorico& ev);
 };
 
 
