@@ -29,12 +29,25 @@ EventoHistorico::EventoHistorico(const EventoHistorico& ev1, const EventoHistori
 
 std::ostream& operator<<(std::ostream& os, const EventoHistorico& ev)
 {
-  os << ev.evento.first << ':' << std::endl;
+    os << ev.evento.first << ':' << std::endl;
 
-  for(auto &i : ev.evento.second)
+    for(auto &i : ev.evento.second)
     {
-      os << "    - " << i << std::endl;
+        os << "    - " << i << std::endl;
     }
-  
-  return os;
+
+    return os;
+}
+
+EventoHistorico EventoHistorico::filtrarEventos(const std::string& palabraClave)
+{
+    EventoHistorico ev(evento.first);
+
+    for(auto i = inicio(); i != final(); i++)
+    {
+        if(i->find(palabraClave) != std::string::npos)
+            ev.insertarEvento(*i);
+    }
+
+    return ev;
 }

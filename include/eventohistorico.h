@@ -35,7 +35,7 @@ class EventoHistorico
     typedef std::set<std::string>::const_iterator IteradorConst; /**< Iterador constante
 								    sobre los eventos.*/
 
-    // --- Contructores/destructor.
+    // --- Contructores.
     EventoHistorico() = default; /**< Constructor por defecto. */
     EventoHistorico(const EventoHistorico& ev1, const EventoHistorico& ev2); /**< Constructor de mezcla. */
     EventoHistorico(int fecha) : evento(fecha, std::set<std::string>()) {} /**< Constructor con fecha. */
@@ -50,6 +50,16 @@ class EventoHistorico
     // --- Métodos que no modifican el estado.
     int obtenerFecha() const { return evento.first; } /**< Devuelve la fecha asociada a la
 							 instancia.*/
+    /**
+     * @return Número de eventos en el objeto.
+     */
+    int numeroElementos() const { return evento.second.size(); }
+    /**
+     * @param palabraClave
+     *
+     * @return EventoHistorico con los eventos que contengan la palabra clave.
+     */
+    EventoHistorico filtrarEventos(const std::string& palabraClave);
     /**
      * @return El conjunto de eventos asociado a la instancia.
      */
